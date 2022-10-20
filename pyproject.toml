@@ -1,0 +1,41 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "iacele"
+version = "0.0.1"
+authors = [
+  { name="Lic. Costich", email="ecostichp@gmail.com" },
+]
+description = "IACele es una aplicación de Inteligencia Artifical, donde Cele te ayuda a potenciar el BI (Business Intelligence) de tu empresa."
+readme = "README.md"
+license = { file="LICENSE" }
+requires-python = ">=3.7"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+   
+    # Librerías para el Backend
+    "Flask", # Librería principal del backend
+    "Psycopg2", # Es el driver que se conecta Python con PostgreSQL
+    "Flask-SQLAlchemy", # ORM del proyecto
+    "Flask-Login", # Para manejar las sesiones del usuario
+    "Flask-WTF", # Para manejar las formas del proyecto
+
+
+    ### Las siguientes son librerías que no son parte del proyecto, pero apoyan ciertos procesos.
+    ### Quizá podamos prescindir de ellas.
+
+    # Librerías para procesamiento de datos 
+    "Pandas", # Para procesamiento de dataframes
+    "OpenPyXL", # La ocupa pandas para grabar archivos .xlsx
+]
+
+[tool.setuptools.packages.find]
+where = ["iacele"]
+
+# python -m pip install -U Pip Setuptools Flask Psycopg2 Flask-SQLAlchemy Flask-Login Flask-WTF Pandas OpenPyXL

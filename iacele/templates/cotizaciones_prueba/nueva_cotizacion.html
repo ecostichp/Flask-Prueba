@@ -1,0 +1,122 @@
+{% extends 'base/base.html' %}
+
+{% block base %}
+
+<div class="container rounded-4 border border-secondary p-2 mb-2 border-opacity-25 text-center" style="background-color: #f7f0f0;">
+  <h1>Agregar una nueva cotización</h1>
+  
+</div>
+
+<div class="container p-3 justify-content-between" >
+  <form method='POST' novalidate>
+    {{ form.csrf_token() }}
+    
+    <div class="fw-semibold row g-3 justify-content-evenly ">
+      <div class="col-md-2">
+        {{ form.cliente_numero.label(class_='form-label',) }}
+        {{ form.cliente_numero (class_='form-control', ) }}
+      </div>
+        
+     
+      <div class="col-md-2"> 
+        {{ form.cliente_nombre.label(class_='form-label',) }}
+        {{ form.cliente_nombre (class_='form-control', ) }}
+       
+      </div> 
+
+      <div class="col-md-2">
+        {{ form.vendedor_numero.label(class_='form-label',) }}
+        {{ form.vendedor_numero (class_='form-control', ) }}
+      </div>
+      <div class="col-md-2">
+        {{ form.vendedor_nombre.label(class_='form-label',) }}
+        {{ form.vendedor_nombre (class_='form-control', ) }}
+      </div>
+
+      <div class="col-md-2">
+        {{ form.fecha.label(class_='form-label') }}
+        {{ form.fecha (class_='form-select') }}
+      </div>
+
+    </div>
+    
+    <div class="fw-semibold row g-3 mt-5 justify-content-evenly">
+      <div class="d-flex col-md-2">
+        {{ form.producto_codigo.label(class_='form-label') }}
+        {{ form.producto_codigo (class_='form-control') }}
+      </div>
+
+      <div class="d-flex col-md-4">
+        {{ form.producto_descripcion.label(class_='form-label') }}
+        {{ form.producto_descripcion (class_='form-control') }}
+      </div>
+      
+      <div class="d-flex col-md-2">
+        {{ form.producto_cantidad.label(class_='form-label') }}
+        {{ form.producto_cantidad (class_='form-control') }}
+      </div>  
+    
+      <!-- <div class="d-grid gap-2 d-md-flex justify-content-sm-end">
+        <button class="btn btn-outline-primary me-sm-2" type="button">+</button>
+        <button class="btn btn-outline-primary" type="button">-</button>
+      </div> -->
+
+      <div class="row justify-content-center mt-5 g-3 text-start">
+        <div class="col-md-4">
+          <input class="form-check-input" type="checkbox" value="" id="invalidCheck2">
+          <label class="fs-6 form-check-label" for="invalidCheck2">
+            Los datos son correctos para guardar
+          </label>
+        </div>
+        <div class="d-grid gap-2 d-md-flex justify-content-sm-end">
+        {{ form.guardar(class_='btn btn-primary') }}
+        </div>
+      </div>
+  </form>
+</div>
+
+<!-- Tabla donde se registran los datos ingresados mediante el formulario -->
+
+<div class="rounded-4 container d-flex mt-5 mb-2 p-2 border border-secondary border-opacity-50 rounded-2" style="background-color: #f7f0f0;">
+  <div class="col-3 text-center">
+      <h6>Número de cotización:</h6>
+      <small class="text-muted">1</small>
+  </div>             
+  <div class="col-3 text-center">
+      <h6>Fecha:</h6>
+      <small class="text-muted">10/01/2000</small>
+  </div>
+  <div class="col-3 text-center">
+      <h6>Cliente: 58</h6>
+      <small class="text-muted">jose</small>
+  </div>        
+  <div class="col-3 text-center">
+      <h6>Vendedor: 12 </h6>
+      <small class="text-muted">maria</small>
+  </div>       
+</div>
+
+<div class="card-body text-center">
+  <table class="table table-hover">
+      <thead>
+          <tr>
+              <th>Cantidad</th>
+              <th>Id Producto</th>
+              <th>Producto</th>
+          </tr>
+      </thead>
+          <tr>
+              <td> datos</td>
+              <td>
+                  <div class="list-group d-flex justify-content-between text-start">
+                      <small>Código </small>
+                      <h6 class="text-muted"></h6>
+                  </div>
+              </td>
+              <td>datos </td>
+          </tr>
+  </table>
+
+
+
+{% endblock base %}

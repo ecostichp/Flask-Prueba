@@ -1,0 +1,74 @@
+<div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel" style="width: 650px; padding: 10px;">
+
+    <div class="offcanvas-body">
+
+        {% for key in cotizaciones %}
+        <div>
+            <div id='idcotizacion{{ key }}' class="cotizacion_off_canvas">
+                <div class="container d-flex p-3 border border-secondary border-opacity-50 rounded-2">
+                    <div class="col-3 text-center">
+                        <h6>Número de cotización:</h6>
+                        <small class="text-muted">{{ key }}</small>
+                    </div>             
+                    <div class="col-3 text-center">
+                        <h6>Fecha:</h6>
+                        <small class="text-muted">{{ cotizaciones[key]['header']['fecha']}}</small>
+                    </div>
+                    <div class="col-3 text-center">
+                        <h6>Cliente: {{ cotizaciones[key]['header']['cliente']}}</h6>
+                        <small class="text-muted">{{ cotizaciones[key]['header']['cliente_nombre']}}</small>
+                    </div>        
+                    <div class="col-3 text-center">
+                        <h6>Vendedor: {{ cotizaciones[key]['header']['vendedor']}} </h6>
+                        <small class="text-muted">{{ cotizaciones[key]['header']['vendedor_nombre']}}</small>
+                    </div>       
+                </div>
+                                
+                <div class="container text-center mt-3 border border-secondary border-opacity-50 rounded-2">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Cantidad</th>
+                                <th>Producto</th>
+                                <th>Precio</th>
+                                <th>Descuento</th>
+                                <th>Precio c/Desc</th>
+                                <th>Subtotal Partida</th>
+                            </tr>
+                        </thead>
+                        {% for art in cotizaciones[key]['body'] %}
+                        <tr>
+                            <td>{{ cotizaciones[key]['body'][art]['cantidad'] }}</td>
+                            <td>
+                                <div class="list-group d-flex justify-content-between text-start">
+                                    <small>Código {{ cotizaciones[key]['body'][art]['codigo'] }}</small>
+                                    <h6 class="text-muted">{{ cotizaciones[key]['body'][art]['descripcion'] }}</h6>
+                                </div>
+                            </td>
+                            <td>{{ '${:,.2f}'.format(cotizaciones[key]['body'][art]['precio']) }}</td>
+                            <td>{{ '{:.2%}'.format(cotizaciones[key]['body'][art]['descuento']) }}</td>
+                            <td>{{ '${:,.2f}'.format(cotizaciones[key]['body'][art]['precio_con_descuento']) }}</td>
+                            <td>{{ '${:,.2f}'.format(cotizaciones[key]['body'][art]['monto_partida']) }}</td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+                
+                <div class="container d-flex mt-4 justify-content-between">
+                    <div class="col-5 text-center border border-secondary border-opacity-50 rounded-2">
+                        <dt>Total de articulos en la cotización:</dt><dd>{{ cotizaciones[key]['footer']['cantidad_cotizacion'] }}</dd>
+                    </div>
+                    <div class="col-5 text-center border border-secondary border-opacity-50 rounded-2">
+                        <dt>Total del monto de la cotización:</dt><dd>{{ '${:,.2f}'.format(cotizaciones[key]['footer']['monto_cotizacion']) }}</dd>
+                    </div>
+                </div>
+                                
+            </div>
+        </div>
+        <div class="my-5"></div>
+        <br>
+        <div class="my-5"></div>
+    {% endfor %}
+    </div>
+
+</div>

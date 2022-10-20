@@ -1,0 +1,126 @@
+{% extends 'base/base.html' %}
+
+{% block base %}
+
+
+{% if current_user.is_authenticated %}
+
+<h1>Hola {{ current_user.usuario }}, bienvenido! </h1>
+<p>{{ current_user.nombre_1ro }} {{ current_user.nombre_2do if current_user.nombre_2do != None else "" }} {{ current_user.apellido_paterno }} {{ current_user.apellido_materno }}</p>
+
+{% else %}
+
+<h1>No hay una sesión iniciada</h1>
+
+{% endif %}
+
+
+<div class='mb-5' style="height: 400px; width: 600px;">
+    <canvas id="myChart"></canvas>
+</div>
+<div style="height: 400px; width: 600px;">
+    <canvas id="myChart2"></canvas>
+</div>
+
+<script>
+const labels = [
+    'Enero',
+    'Febrero',
+    'Marzo',
+    'Abril',
+    'Mayo',
+    'Junio',
+];
+
+const data = {
+    labels: labels,
+    datasets: [{
+    label: 'Ventas Globales',
+    backgroundColor: 'rgb(70, 200, 180)',
+    borderColor: 'rgb(70, 130, 180)',
+    data: [0, 10, 5, 2, 20, 30, 45],
+    }]
+};
+
+const plugin = {
+  id: 'custom_canvas_background_color',
+  beforeDraw: (chart) => {
+    const {ctx} = chart;
+    ctx.save();
+    ctx.globalCompositeOperation = 'destination-over';
+    ctx.fillStyle = 'rgb(240, 240, 240)';
+    ctx.fillRect(0, 0, chart.width, chart.height);
+    ctx.restore();
+  }
+};
+
+const config = {
+    type: 'line',
+    data: data,
+    options: {},
+     plugins: [plugin]
+};
+</script>
+  
+<script>
+
+const data2 = {
+    labels: labels,
+    datasets: [{
+    label: 'A1',
+    backgroundColor: 'rgb(80, 100, 150)',
+    borderColor: 'rgb(80, 240, 240)',
+    data: [0, 3, 2, 5, 7, 4, 3],
+    },
+    {
+    label: 'A2',
+    backgroundColor: 'rgb(70, 200, 180)',
+    borderColor: 'rgb(70, 130, 180)',
+    data: [0, 2, 5, 4, 6, 7, 1],
+    },
+    {
+    label: 'CE',
+    backgroundColor: 'rgb(240, 100, 50)',
+    borderColor: 'rgb(70, 130, 180)',
+    data: [0, 10, 5, 2, 20, 30, 45],
+    }]
+};
+
+const plugin2 = {
+  id: 'custom_canvas_background_color',
+  beforeDraw: (chart) => {
+    const {ctx} = chart;
+    ctx.save();
+    ctx.globalCompositeOperation = 'destination-over';
+    ctx.fillStyle = 'rgb(240, 240, 240)';
+    ctx.fillRect(0, 0, chart.width, chart.height);
+    ctx.restore();
+  }
+};
+
+const config2 = {
+    type: 'bar',
+    data: data2,
+    options: {},
+     plugins: [plugin2]
+};
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+const myChart = new Chart(
+    document.getElementById('myChart'),
+    config
+);
+
+const myChart2 = new Chart(
+    document.getElementById('myChart2'),
+    config2
+);
+</script>
+
+
+    
+{% endblock base %}

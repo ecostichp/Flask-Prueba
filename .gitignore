@@ -1,0 +1,16 @@
+# Para archivos caché
+__pycache__/
+*.py[cod]
+
+# Archivos creados por la librería 'Build' al crear el paquete.
+build/
+dist/
+iacele-0*/
+*.egg-info/
+
+# Archivos a ignorar en este proyecto
+src/iacele/config/devConfig.py
+src/iacele/config/prodConfig.py
+
+# archivos_prueba
+# database/

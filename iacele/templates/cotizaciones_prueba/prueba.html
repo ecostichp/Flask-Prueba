@@ -1,0 +1,33 @@
+{% extends 'base/base.html' %}
+
+{% block base %}
+
+<div class="container d-flex">
+    <div>
+        <form>
+        <input class="form-control" list="clientes" id="z" onkeyup="wep(this, {{ clientes }})"> 
+        <datalist id="clientes">
+        {% for key in clientes %}
+            <option value="{{ key }}">{{ clientes[key] }}</option>
+        {% endfor %}
+        </datalist>
+        </form>
+    </div>
+    <div class="form-control ms-3" id="prueba_cliente"></div>
+</div>
+
+<hr>
+<div class="container d-flex">
+    <div>
+        <form>
+        <input class="form-control" list="vendedores" id="z" onkeyup="wep(this, {{ vendedores }})"> 
+        <datalist id="vendedores">
+        {% for key in vendedores %}
+            <option value="{{ key }}">{{ vendedores[key] }}</option>
+        {% endfor %}
+        </datalist>
+        </form>
+    </div>
+    <div class="form-control ms-3" id="prueba_cliente"></div>
+</div>
+{% endblock base %}

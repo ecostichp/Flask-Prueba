@@ -1,0 +1,43 @@
+{% extends 'base/base.html' %}
+
+{% include 'cotizaciones_prueba/off_canvas_cotizacion.html' %}
+
+{% block base %}
+
+    <div class="d-flex col justify-content-between p-3" style="background-color: white; max-height: 70px;">
+        <div class="d-flex align-items-center">
+            <h5 class="p-0 m-0">Listado de cotizaciones</h5>
+        </div>
+        <div class="pe-2">
+            <a class="btn btn-primary" href="{{ url_for('cotizaciones_prueba.nueva_cotizacion') }}">Agregar Nueva</a>
+        </div> 
+    </div>
+
+
+    <div class="list-group p-3"> 
+        
+        {% for key in cotizaciones %}
+        
+        <a id="idcotizacion{{ key }}" class="list-group-item list-group-item-action" data-bs-toggle="offcanvas" href="#offcanvasExample"
+        role="button" aria-controls="offcanvasExample">
+            <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">Cotización {{ key }}</h5>
+            <small>Fecha: {{ cotizaciones[key]['header']['fecha'] }}</small>
+            </div>
+            <p class="mb-1">
+                {{ cotizaciones[key]['footer']['cantidad_cotizacion'] }} articulos
+                ||
+                Total del monto: {{ '${:,.2f}'.format(cotizaciones[key]['footer']['monto_cotizacion']) }}
+            </p>
+            <small>
+                Cliente {{ cotizaciones[key]['header']['cliente'] }}: {{ cotizaciones[key]['header']['cliente_nombre'] }}
+                -
+                Vendedor {{ cotizaciones[key]['header']['vendedor'] }}: {{ cotizaciones[key]['header']['vendedor_nombre'] }}
+            </small>
+        </a>  
+        {% endfor %}
+        
+    </div>
+</div>
+
+{% endblock base %}

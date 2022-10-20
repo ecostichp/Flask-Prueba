@@ -1,0 +1,76 @@
+{% extends 'base/base.html' %}
+
+{% block base %}
+
+{% for key in cotizaciones %}
+
+<div class="rounded-3 my-3" style="background-color: rgb(255, 255, 255); box-shadow: 0px 0px 15px 1px rgb(190, 190, 190);">
+
+<div class="d-flex text-center">
+    <div class="container">
+        <h6>Número de cotización:</h6>
+        <small class="text-muted">{{ key }}</small>
+    </div>
+    <div class="container">
+        <h6>Fecha:</h6>
+        <small class="text-muted">{{ cotizaciones[key]['header']['fecha'] }}</small>
+    </div>
+    <div class="container">
+        <h6>Cliente: {{ cotizaciones[key]['header']['cliente'] }}</h6>
+        <small class="text-muted">{{ cotizaciones[key]['header']['cliente_nombre'] }}</small>
+    </div>
+    <div class="container">
+        <h6>Vendedor: {{ cotizaciones[key]['header']['vendedor'] }} </h6>
+        <small class="text-muted">{{ cotizaciones[key]['header']['vendedor_nombre'] }}</small>
+    </div>
+</div>
+
+<hr>
+
+<div class="card-body text-center">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Foto</th>
+                <th>Cantidad</th>
+                <th>Producto</th>
+                <th>Precio</th>
+                <th>Descuento</th>
+                <th>Precio c/Desc</th>
+                <th>Subtotal Partida</th>
+            </tr>
+        </thead>
+        {% for art in cotizaciones[key]['body'] %}
+            <tr>
+                <td></td>
+                <td>{{ cotizaciones[key]['body'][art]['cantidad'] }}</td>
+                <td>
+                    <div class="list-group d-flex justify-content-between text-start">
+                        <small>Código {{ cotizaciones[key]['body'][art]['codigo'] }}</small>
+                        <h6 class="text-muted">{{ cotizaciones[key]['body'][art]['descripcion'] }}</h6>
+                    </div>
+                </td>
+                <td>{{ '${:,.2f}'.format(cotizaciones[key]['body'][art]['precio']) }}</td>
+                <td>{{ '{:.2%}'.format(cotizaciones[key]['body'][art]['descuento']) }}</td>
+                <td>{{ '${:,.2f}'.format(cotizaciones[key]['body'][art]['precio_con_descuento']) }}</td>
+                <td>{{ '${:,.2f}'.format(cotizaciones[key]['body'][art]['monto_partida']) }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+</div>
+
+<div class="container d-flex col pb-3">
+    <div class="container d-flex">
+        <strong>Total de articulos en la cotización:</strong><span>{{ cotizaciones[key]['footer']['cantidad_cotizacion'] }}</span>
+    </div>
+    <div class="container d-flex">
+        <strong>Total del monto de la cotización:</strong><span>{{ '${:,.2f}'.format(cotizaciones[key]['footer']['monto_cotizacion']) }}</span>
+    </div>
+</div>
+
+
+</div>
+
+    {% endfor %}
+    
+{% endblock base %}

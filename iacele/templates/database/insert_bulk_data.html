@@ -1,0 +1,17 @@
+{% extends 'base/base.html' %}
+
+{% block base %}
+
+<div>
+    {% for usuario in usuarios %}
+        <p>{{usuario}}</p>
+        <hr>
+    {% endfor %}
+</div>
+
+<form method='POST' novalidate>
+    {{ form.csrf_token() }}
+    {{ form.guardar(class_='btn btn-primary') }}
+</form>
+
+{% endblock base %}
