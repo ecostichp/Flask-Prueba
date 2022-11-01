@@ -37,5 +37,3 @@ dependencies = [
 
 [tool.setuptools.packages.find]
 where = ["iacele"]
-
-# python -m pip install -U Pip Setuptools Flask Psycopg2 Flask-SQLAlchemy Flask-Login Flask-WTF Pandas OpenPyXL
