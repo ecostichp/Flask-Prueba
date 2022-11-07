@@ -2,9 +2,27 @@
 
 La Inteligencia Artificial Cele, está diseñada para explotar el potencial de tu negocio mediante el Business Intelligence y el Análisis de Datos.
 
-### Instalar las siguientes dependencias del proyecto.
+
+
+### 1. Crea un entorno en python
+```
+python -m venv 'nombre_env'
+'nombre_env'\Scripts\activate
+```
+
+
+### 2. Instalar las siguientes dependencias del proyecto.
+```
 python -m pip install -U Pip  
 python -m pip install -U Flask Psycopg2 Flask-SQLAlchemy Flask-Login Flask-WTF Pandas OpenPyXL
+```
+
+### 3. Inicia el servidor
+```
+python entrypoint.py
+```
+
+
 
 
 

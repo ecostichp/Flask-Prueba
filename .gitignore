@@ -2,6 +2,9 @@
 __pycache__/
 *.py[cod]
 
+# Directorio del ambiente
+env/
+
 # Archivos creados por la librería 'Build' al crear el paquete.
 build/
 dist/
